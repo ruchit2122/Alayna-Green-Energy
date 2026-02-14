@@ -39,7 +39,7 @@ const Navbar = () => {
                 className={`font-heading text-sm tracking-wide transition-colors hover:text-orange-400 ${
                   location.pathname === item.path
                     ? "font-bold text-orange-400"
-                    : "font-medium text-white"
+                    : "font-medium text-slate-900"
                 }`}
               >
                 {item.label}
@@ -50,7 +50,7 @@ const Navbar = () => {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-slate-900"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -70,7 +70,7 @@ const Navbar = () => {
                   className={`font-heading text-sm transition-colors hover:text-orange-400 ${
                     location.pathname === item.path
                       ? "font-bold text-orange-400"
-                      : "font-medium text-white"
+                      : "font-medium text-slate-900"
                   }`}
                 >
                   {item.label}

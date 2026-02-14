@@ -47,11 +47,11 @@ const Work = () => (
     <section className="relative h-[50vh] min-h-[350px] flex items-center">
       <img src={workImage} alt="Solar panel installation by Alayna team" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 gradient-hero-overlay" />
-      <div className="relative container mx-auto px-4">
+      <div className="relative container mx-auto px-4 text-center">
         <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-primary-foreground mb-4">
           Our Work & Experience
         </h1>
-        <p className="text-primary-foreground/80 text-lg max-w-xl">
+        <p className="text-primary-foreground/80 text-lg max-w-xl mx-auto">
           Over 1,300 installations. 33 districts. 5-6 MW capacity. Here's a closer look at what we've built.
         </p>
       </div>

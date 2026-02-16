@@ -1,4 +1,4 @@
-import { Sun, Mail, Phone, MapPin, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => (
@@ -7,9 +7,12 @@ const Footer = () => (
       {/* Brand */}
       <div className="md:col-span-1">
         <div className="flex items-center gap-2 mb-4">
-          <Sun className="h-7 w-7 text-secondary" />
+          <img
+            src="/logo.png"
+            alt="Alayna Green Energy Logo"
+            className="h-24 w-24 object-contain"
+          />
           <div>
-            <span className="text-lg font-heading font-bold">Alayna</span>
             <span className="block text-[10px] font-heading font-medium text-secondary tracking-widest uppercase -mt-1">
               Green Energy Pvt. Ltd.
             </span>

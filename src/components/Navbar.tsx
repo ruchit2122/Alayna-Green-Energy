@@ -21,13 +21,9 @@ const Navbar = () => {
           <img
             src="/logo.png"
             alt="Alayna Green Energy Pvt. Ltd."
-            className="h-10 w-auto"
+            className="h-8 w-64 md:w-auto"
           />
-          <div>
-            <span className="block text-[10px] font-heading font-medium text-secondary tracking-widest uppercase -mt-0">
-              Green Energy Pvt. Ltd.
-            </span>
-          </div>
+          <div></div>
         </Link>
 
         {/* Desktop */}

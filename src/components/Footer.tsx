@@ -10,12 +10,9 @@ const Footer = () => (
           <img
             src="/logo.png"
             alt="Alayna Green Energy Logo"
-            className="h-24 w-24 object-contain"
+            className="h-24 w-auto object-contain"
           />
           <div>
-            <span className="block text-[10px] font-heading font-medium text-secondary tracking-widest uppercase -mt-1">
-              Green Energy Pvt. Ltd.
-            </span>
           </div>
         </div>
         <p className="text-sm text-primary-foreground/80 leading-relaxed mb-4">

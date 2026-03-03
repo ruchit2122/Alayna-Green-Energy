@@ -12,12 +12,11 @@ const Footer = () => (
             alt="Alayna Green Energy Logo"
             className="h-24 w-auto object-contain"
           />
-          <div>
-          </div>
+          <div></div>
         </div>
         <p className="text-sm text-primary-foreground/80 leading-relaxed mb-4">
           Gujarat's award-winning solar company. Official channel partner of
-          Waaree Energies Ltd. Serving 1,300+ happy customers since 2018.
+          Waaree Energies Ltd. Serving 2500+ happy customers since 2018.
         </p>
         <a
           href="https://wa.me/916353439659?text=Hi%2C%20I%20am%20interested%20in%20solar%20installation"
@@ -39,6 +38,7 @@ const Footer = () => (
             { label: "Home", path: "/" },
             { label: "About Us", path: "/about" },
             { label: "Our Work", path: "/work" },
+            { label: "Gallery", path: "/gallery" },
             { label: "Contact", path: "/contact" },
           ].map((l) => (
             <li key={l.path}>

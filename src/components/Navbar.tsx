@@ -17,13 +17,18 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-navbar">
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-3">
           <img
             src="/logo.png"
             alt="Alayna Green Energy Pvt. Ltd."
             className="h-8 w-64 md:w-auto"
           />
-          <div></div>
+          <div className="w-px h-6 bg-border" />
+          <img
+            src="/waaree.png"
+            alt="Waaree Energies — Channel Partner"
+            className="h-12 "
+          />
         </Link>
 
         {/* Desktop */}

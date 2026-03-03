@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Sun,
@@ -15,13 +16,14 @@ import {
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import heroImage from "@/assets/hero-solar.jpg";
-import officeImage from "@/assets/office.png";
+import aboutTeamImage from "@/assets/about-team.jpg";
+import workSolarImage from "@/assets/work-solar.jpg";
 
 const stats = [
-  { value: "1,300+", label: "Happy Customers" },
+  { value: "2,500+", label: "Happy Customers" },
   { value: "Since 2018", label: "Years of Trust" },
   { value: "10+", label: "Offices Across Gujarat" },
-  { value: "5-6 Cr", label: "Capacity Delivered (MW)" },
+  { value: "3.5-4 ", label: "Capacity Delivered (MW)" },
 ];
 
 const services = [
@@ -29,32 +31,39 @@ const services = [
     icon: Sun,
     title: "Rooftop Solar Systems",
     desc: "We design, supply, and install customized rooftop solar systems for homes, shops, factories, and offices. Whether you need a 1kW system for your house or a 100kW setup for your factory, we handle everything from survey to commissioning.",
+    image:
+      "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80",
   },
   {
     icon: Zap,
     title: "Ground-Mounted Solar Plants",
     desc: "For farms and large open lands, we set up ground-mounted solar power plants that maximize energy generation. Our agricultural solar solutions help farmers reduce electricity bills while earning through net metering.",
+    image:
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=600&q=80",
   },
   {
     icon: Shield,
     title: "Polycab Wires & Inverters",
     desc: "As official suppliers of Polycab electrical products, we provide high-quality DC cables, AC wires, and solar inverters. Every component we use meets Indian safety standards and comes with a manufacturer warranty.",
+    image:
+      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80",
   },
   {
     icon: Users,
     title: "Consultation & After-Sales",
     desc: "Not sure how solar works? Our team will visit your site, assess your electricity consumption, and suggest the best system size and budget. We also handle government subsidy paperwork and provide lifelong maintenance support.",
+    image:
+      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80",
   },
 ];
 
 const partners = [
-  { name: "Adani Solar", role: "Panel Supplier", logo: "/Adani.svg" },
   {
     name: "Waaree Energies",
     role: "Official Channel Partner",
     logo: "/waaree.png",
   },
-  { name: "Tata Solar", role: "Panel Supplier", logo: "/Tata.png" },
+
   { name: "Polycab", role: "Wires & Inverters", logo: "/polycab.png" },
 ];
 
@@ -76,17 +85,17 @@ const whyChooseUs = [
   },
   {
     icon: Wrench,
-    title: "Lifetime Maintenance",
-    desc: "Annual cleaning, performance checks, and inverter servicing — we stay with you after installation.",
+    title: "5 year Maintenance",
+    desc: "We provide 5 years of free maintenance as per government guidelines - including  inverter checks, and performance monitoring to keep your system running at peak efficiency.",
   },
   {
     icon: Leaf,
-    title: "Genuine Products Only",
-    desc: "No local or duplicate panels. We only use Tier-1 branded products with 25-year performance warranty.",
+    title: "Genuine Waree Products Only",
+    desc: "We only use Tier-1 branded products with 25-year performance warranty.",
   },
   {
     icon: Star,
-    title: "1,300+ Happy Families",
+    title: "2500+ Happy Families",
     desc: "Our customers across 33 districts of Gujarat trust us because we deliver what we promise.",
   },
 ];
@@ -110,7 +119,7 @@ const processSteps = [
   {
     step: "04",
     title: "Net Metering & Handover",
-    desc: "We apply for net metering with UGVCL/MGVCL, get your meter installed, and hand over the system with all documents.",
+    desc: "We apply for net metering with GEB, get your meter installed, and hand over the system with all documents.",
   },
 ];
 
@@ -135,36 +144,135 @@ const testimonials = [
   },
 ];
 
+const heroSlides = [
+  {
+    src: heroImage,
+    alt: "Solar panel installation on a rooftop in Gujarat",
+    badge: "Official Channel Partner — Waaree Energies Ltd.",
+    titleLines: ["Switch to Solar.", "Save Money.", "Go Green."],
+    description:
+      "We are Alayna Green Energy Pvt. Ltd. — Gujarat's award-winning solar company serving 2500+ homes, businesses, and farms since 2018.",
+    location: "Based in Anand, Charotar | 10+ offices across Gujarat",
+  },
+  {
+    src: aboutTeamImage,
+    alt: "Alayna Green Energy team at the office",
+    badge: "Trusted by 2500+ Families Across Gujarat",
+    titleLines: ["Expert Solar Team.", "Honest Guidance.", "Reliable Support."],
+    description:
+      "From free site survey to subsidy paperwork and net metering, our team handles your complete solar journey with transparent advice.",
+    location: "Dedicated service team with statewide support",
+  },
+  {
+    src: workSolarImage,
+    alt: "Solar installation work by Alayna Green Energy team",
+    badge: "Fast & Safe Installation Process",
+    titleLines: [
+      "Quality Installation.",
+      "On-Time Delivery.",
+      "Long-Term Performance.",
+    ],
+    description:
+      "Our trained technicians install rooftop and industrial systems with proper earthing, safety standards, and high-quality components.",
+    location: "Most residential systems completed in 3–5 working days",
+  },
+];
+
+const formatAnimatedValue = (value: string, progress: number) => {
+  const plusMatch = value.match(/^\s*([\d,]+)\+\s*$/);
+  if (plusMatch) {
+    const target = Number(plusMatch[1].replace(/,/g, ""));
+    const current = Math.round(target * progress).toLocaleString("en-IN");
+    return `${current}+`;
+  }
+
+  const rangeMatch = value.match(
+    /^\s*(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*$/,
+  );
+  if (rangeMatch) {
+    const startTarget = Number(rangeMatch[1]);
+    const endTarget = Number(rangeMatch[2]);
+    const startValue = (startTarget * progress).toFixed(
+      startTarget % 1 ? 1 : 0,
+    );
+    const endValue = (endTarget * progress).toFixed(endTarget % 1 ? 1 : 0);
+    return `${startValue}-${endValue}`;
+  }
+
+  const numberMatch = value.match(/^\s*([\d,]+)\s*$/);
+  if (numberMatch) {
+    const target = Number(numberMatch[1].replace(/,/g, ""));
+    return Math.round(target * progress).toLocaleString("en-IN");
+  }
+
+  return value;
+};
+
 const Index = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [countProgress, setCountProgress] = useState(0);
+  const currentSlide = heroSlides[activeSlide];
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % heroSlides.length);
+    }, 4000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const duration = 1400;
+    const startTime = performance.now();
+    let rafId = 0;
+
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const nextProgress = Math.min(elapsed / duration, 1);
+      setCountProgress(nextProgress);
+
+      if (nextProgress < 1) {
+        rafId = window.requestAnimationFrame(animate);
+      }
+    };
+
+    rafId = window.requestAnimationFrame(animate);
+    return () => window.cancelAnimationFrame(rafId);
+  }, []);
+
   return (
     <Layout>
       {/* Hero */}
       <section className="relative h-[90vh] min-h-[550px] flex items-center">
-        <img
-          src={heroImage}
-          alt="Solar panel installation on a rooftop in Gujarat"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        {heroSlides.map((slide, index) => (
+          <img
+            key={slide.src}
+            src={slide.src}
+            alt={slide.alt}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              index === activeSlide ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
         <div className="absolute inset-0 gradient-hero-overlay" />
         <div className="relative container mx-auto px-4">
           <div className="max-w-2xl animate-fade-in-up">
             <p className="text-secondary font-heading font-semibold text-sm tracking-widest uppercase mb-3">
-              Official Channel Partner — Waaree Energies Ltd.
+              {currentSlide.badge}
             </p>
             <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-primary-foreground leading-tight mb-6">
-              Switch to Solar.
-              <br />
-              Save Money.
-              <br />
-              Go Green.
+              {currentSlide.titleLines.map((line) => (
+                <span key={line}>
+                  {line}
+                  <br />
+                </span>
+              ))}
             </h1>
             <p className="text-primary-foreground/80 text-lg mb-4 max-w-lg">
-              We are Alayna Green Energy Pvt. Ltd. — Gujarat's award-winning
-              solar company serving 1,300+ homes, businesses, and farms since
-              2018.
+              {currentSlide.description}
             </p>
             <p className="text-primary-foreground/60 text-sm mb-8 max-w-lg">
-              Based in Anand, Charotar | 10+ offices across Gujarat
+              {currentSlide.location}
             </p>
             <div className="flex gap-4 flex-wrap">
               <Link
@@ -190,7 +298,7 @@ const Index = () => {
           {stats.map((s) => (
             <div key={s.label}>
               <p className="text-2xl md:text-3xl font-heading font-extrabold text-solar-dark">
-                {s.value}
+                {formatAnimatedValue(s.value, countProgress)}
               </p>
               <p className="text-sm font-medium text-solar-dark/70">
                 {s.label}
@@ -213,24 +321,30 @@ const Index = () => {
             From a small home rooftop to a large industrial power plant — we
             handle everything. Here's what we can do for you.
           </p>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
             {services.map((s) => (
               <div
                 key={s.title}
-                className="bg-card rounded-xl p-7 shadow-md hover:shadow-xl transition-shadow border border-border group"
+                className="bg-card rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-border group overflow-hidden hover:-translate-y-1"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg gradient-solar flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                    <s.icon className="h-6 w-6 text-secondary" />
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[hsl(210_29%_15%/0.6)] to-transparent" />
+                  <div className="absolute bottom-3 left-3 w-9 h-9 rounded-md gradient-gold flex items-center justify-center shadow-lg">
+                    <s.icon className="h-4 w-4 text-solar-dark" />
                   </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-lg mb-2">
-                      {s.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {s.desc}
-                    </p>
-                  </div>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-heading font-semibold text-sm mb-1.5">
+                    {s.title}
+                  </h3>
+                  <p className="text-muted-foreground text-xs leading-relaxed line-clamp-3">
+                    {s.desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -258,25 +372,60 @@ const Index = () => {
       </section>
 
       {/* Award */}
-      <section className="py-20 bg-background">
+      <section className="py-16 bg-background overflow-hidden">
         <div className="container mx-auto px-4">
-          <p className="text-secondary font-heading font-semibold text-sm tracking-widest uppercase text-center mb-2">
-            Recognition
-          </p>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-3">
-            Divya Bhaskar Award Winner
-          </h2>
-          <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            Recognized as Charotar's most trusted solar company — Divya Bhaskar
-            Star Award 2024 winner for excellence in solar energy services
-            across Gujarat.
-          </p>
-          <div className="rounded-2xl overflow-hidden shadow-xl border border-border max-w-2xl mx-auto">
-            <img
-              src="/awward.png"
-              alt="Alayna Green Energy - Divya Bhaskar Star Award Winner 2024"
-              className="w-full h-auto object-cover"
-            />
+          <div className="relative rounded-2xl overflow-hidden gradient-solar">
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full -translate-y-1/2 translate-x-1/3" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/10 rounded-full translate-y-1/2 -translate-x-1/4" />
+
+            <div className="relative flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
+              {/* Image */}
+              <div className="w-full md:w-2/5 shrink-0">
+                <div className="rounded-xl overflow-hidden shadow-2xl border-2 border-primary-foreground/10">
+                  <img
+                    src="/awward.png"
+                    alt="Alayna Green Energy - Divya Bhaskar Star Award Winner 2024"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex-1 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 gradient-gold px-3 py-1.5 rounded-full mb-4">
+                  <Star className="h-4 w-4 text-solar-dark fill-solar-dark" />
+                  <span className="text-xs font-heading font-bold text-solar-dark uppercase tracking-wide">
+                    Recognition
+                  </span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-primary-foreground mb-3">
+                  Divya Bhaskar Star Award Winner 2024
+                </h2>
+                <p className="text-primary-foreground/75 text-sm md:text-base leading-relaxed mb-2 max-w-lg">
+                  Recognized as Charotar's most trusted solar company for
+                  excellence in solar energy services across Gujarat. This award
+                  reflects the trust of 2500+ families who chose us.
+                </p>
+                <p className="text-secondary font-heading font-semibold text-sm mb-6 max-w-lg">
+                  Awarded by Shri Ramanbhai Solanki
+                </p>
+                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                  <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg px-4 py-2.5 text-center">
+                    <p className="text-lg font-heading font-extrabold text-secondary">2024</p>
+                    <p className="text-primary-foreground/60 text-xs">Award Year</p>
+                  </div>
+                  <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg px-4 py-2.5 text-center">
+                    <p className="text-lg font-heading font-extrabold text-secondary">#1</p>
+                    <p className="text-primary-foreground/60 text-xs">In Charotar</p>
+                  </div>
+                  <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg px-4 py-2.5 text-center">
+                    <p className="text-lg font-heading font-extrabold text-secondary">2500+</p>
+                    <p className="text-primary-foreground/60 text-xs">Happy Families</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -288,7 +437,7 @@ const Index = () => {
             Why Us?
           </p>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-3">
-            Why 1,300+ Customers Trust Alayna
+            Why 2500+ Customers Trust Alayna
           </h2>
           <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
             There are many solar companies in Gujarat. Here's what makes us
@@ -404,18 +553,18 @@ const Index = () => {
             We only work with India's top solar and electrical brands to ensure
             you get the best quality products with genuine warranties.
           </p>
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center items-center gap-12">
             {partners.map((p) => (
               <div
                 key={p.name}
-                className="bg-card rounded-lg px-8 py-5 shadow-sm border border-border text-center min-w-[180px] flex flex-col items-center justify-center"
+                className="text-center"
               >
                 <img
                   src={p.logo}
                   alt={p.name}
-                  className="h-12 object-contain mb-2"
+                  className="h-28 object-contain mx-auto mb-2"
                 />
-                <p className="text-muted-foreground text-xs mt-1">{p.role}</p>
+                <p className="text-muted-foreground text-xs">{p.role}</p>
               </div>
             ))}
           </div>

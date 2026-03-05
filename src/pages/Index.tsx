@@ -361,12 +361,56 @@ const Index = () => {
             before you buy. We are here to help you make the right choice for
             your solar journey.
           </p>
-          <div className="rounded-2xl overflow-hidden shadow-xl border border-border max-w-2xl mx-auto">
-            <img
-              src="./office.png"
-              alt="Alayna Green Energy showroom and office interiors"
-              className="w-full h-auto object-cover"
-            />
+          <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-border">
+            {/* Row 1 - 3 images */}
+            <div className="grid grid-cols-3">
+              <img
+                src="./1_gallery.jpeg"
+                alt="Waaree Mission & Vision board"
+                className="w-full h-48 object-cover"
+              />
+              <img
+                src="./2_gallery.jpeg"
+                alt="Alayna Green Energy showroom signboard"
+                className="w-full h-48 object-cover"
+              />
+              <img
+                src="./3_gallery.jpeg"
+                alt="Waaree On Grid Inverter display wall"
+                className="w-full h-48 object-cover"
+              />
+            </div>
+            {/* Row 2 - 3 images */}
+            <div className="grid grid-cols-3">
+              <img
+                src="./4_gallery.jpeg"
+                alt="Waaree energy transition display"
+                className="w-full h-48 object-cover"
+              />
+              <img
+                src="./5_gallery.jpeg"
+                alt="Alayna Waaree authorised channel partner sign"
+                className="w-full h-48 object-cover"
+              />
+              <img
+                src="./6_gallery.jpeg"
+                alt="Rooftop solar smart investment wall"
+                className="w-full h-48 object-cover"
+              />
+            </div>
+            {/* Row 3 - 2 images (centered) */}
+            <div className="grid grid-cols-2">
+              <img
+                src="./7_gallery.jpeg"
+                alt="Alayna showroom exterior front view"
+                className="w-full h-48 object-cover"
+              />
+              <img
+                src="./8_gallery.jpeg"
+                alt="Waaree battery energy storage display"
+                className="w-full h-48 object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -412,16 +456,28 @@ const Index = () => {
                 </p>
                 <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                   <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg px-4 py-2.5 text-center">
-                    <p className="text-lg font-heading font-extrabold text-secondary">2024</p>
-                    <p className="text-primary-foreground/60 text-xs">Award Year</p>
+                    <p className="text-lg font-heading font-extrabold text-secondary">
+                      2024
+                    </p>
+                    <p className="text-primary-foreground/60 text-xs">
+                      Award Year
+                    </p>
                   </div>
                   <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg px-4 py-2.5 text-center">
-                    <p className="text-lg font-heading font-extrabold text-secondary">#1</p>
-                    <p className="text-primary-foreground/60 text-xs">In Charotar</p>
+                    <p className="text-lg font-heading font-extrabold text-secondary">
+                      #1
+                    </p>
+                    <p className="text-primary-foreground/60 text-xs">
+                      In Charotar
+                    </p>
                   </div>
                   <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg px-4 py-2.5 text-center">
-                    <p className="text-lg font-heading font-extrabold text-secondary">2500+</p>
-                    <p className="text-primary-foreground/60 text-xs">Happy Families</p>
+                    <p className="text-lg font-heading font-extrabold text-secondary">
+                      2500+
+                    </p>
+                    <p className="text-primary-foreground/60 text-xs">
+                      Happy Families
+                    </p>
                   </div>
                 </div>
               </div>
@@ -555,10 +611,7 @@ const Index = () => {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-12">
             {partners.map((p) => (
-              <div
-                key={p.name}
-                className="text-center"
-              >
+              <div key={p.name} className="text-center">
                 <img
                   src={p.logo}
                   alt={p.name}

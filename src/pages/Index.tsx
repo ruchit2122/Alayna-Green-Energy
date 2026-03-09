@@ -362,55 +362,11 @@ const Index = () => {
             your solar journey.
           </p>
           <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-border">
-            {/* Row 1 - 3 images */}
-            <div className="grid grid-cols-3">
-              <img
-                src="./1_gallery.jpeg"
-                alt="Waaree Mission & Vision board"
-                className="w-full h-48 object-cover"
-              />
-              <img
-                src="./2_gallery.jpeg"
-                alt="Alayna Green Energy showroom signboard"
-                className="w-full h-48 object-cover"
-              />
-              <img
-                src="./3_gallery.jpeg"
-                alt="Waaree On Grid Inverter display wall"
-                className="w-full h-48 object-cover"
-              />
-            </div>
-            {/* Row 2 - 3 images */}
-            <div className="grid grid-cols-3">
-              <img
-                src="./4_gallery.jpeg"
-                alt="Waaree energy transition display"
-                className="w-full h-48 object-cover"
-              />
-              <img
-                src="./5_gallery.jpeg"
-                alt="Alayna Waaree authorised channel partner sign"
-                className="w-full h-48 object-cover"
-              />
-              <img
-                src="./6_gallery.jpeg"
-                alt="Rooftop solar smart investment wall"
-                className="w-full h-48 object-cover"
-              />
-            </div>
-            {/* Row 3 - 2 images (centered) */}
-            <div className="grid grid-cols-2">
-              <img
-                src="./7_gallery.jpeg"
-                alt="Alayna showroom exterior front view"
-                className="w-full h-48 object-cover"
-              />
-              <img
-                src="./8_gallery.jpeg"
-                alt="Waaree battery energy storage display"
-                className="w-full h-48 object-cover"
-              />
-            </div>
+            <img
+              src="./25.jpg.jpeg"
+              alt="Waaree Mission & Vision board"
+              className="w-full h-96 object-cover"
+            />
           </div>
         </div>
       </section>

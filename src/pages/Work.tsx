@@ -10,52 +10,12 @@ import {
 import workImage from "@/assets/work-solar.jpg";
 
 const locations = [
-  "Ahmedabad",
-  "Amreli",
-  "Anand",
-  "Aravali",
-  "Banaskantha",
-  "Bharuch",
-  "Bhavnagar",
-  "Botad",
-  "Chhota Udaipur",
-  "Dahod",
-  "Dang",
-  "Devbhoomi Dwarka",
-  "Gandhinagar",
-  "Gir Somnath",
-  "Jamnagar",
-  "Junagadh",
-  "Kachchh (Kutch)",
-  "Kheda",
-  "Mahisagar",
-  "Mehsana",
-  "Morbi",
-  "Narmada",
-  "Navsari",
-  "Panchmahal",
-  "Patan",
-  "Porbandar",
-  "Rajkot",
-  "Sabarkantha",
-  "Surat",
-  "Surendranagar",
-  "Tapi",
-  "Vadodara",
-  "Valsad",
-];
-
-const offices = [
-  { name: "Anand", type: "Head Office" },
-  { name: "Nadiad", type: "Branch" },
-  { name: "Borsad", type: "Branch" },
-  { name: "Umreth", type: "Branch" },
-  { name: "Chotta Udaipur", type: "Branch" },
-  { name: "Kheda", type: "Branch" },
-  { name: "Petlad", type: "Branch" },
-  { name: "Dholka", type: "Branch" },
-  { name: "Tarapur", type: "Branch" },
-  { name: "Kathwada", type: "Branch" },
+  "Ahmedabad", "Amreli", "Anand", "Aravali", "Banaskantha", "Bharuch",
+  "Bhavnagar", "Botad", "Chhota Udaipur", "Dahod", "Dang",
+  "Devbhoomi Dwarka", "Gandhinagar", "Gir Somnath", "Jamnagar", "Junagadh",
+  "Kachchh (Kutch)", "Kheda", "Mahisagar", "Mehsana", "Morbi", "Narmada",
+  "Navsari", "Panchmahal", "Patan", "Porbandar", "Rajkot", "Sabarkantha",
+  "Surat", "Surendranagar", "Tapi", "Vadodara", "Valsad",
 ];
 
 const projectTypes = [
@@ -232,7 +192,7 @@ const Work = () => (
       </div>
     </section>
 
-    {/* Offices */}
+    {/* Office Locations */}
     <section className="py-16 bg-muted">
       <div className="container mx-auto px-4">
         <p className="text-secondary font-heading font-semibold text-sm tracking-widest uppercase text-center mb-2">
@@ -245,24 +205,12 @@ const Work = () => (
           With 10+ dedicated offices, we ensure quick response times and local
           support for our customers.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
-          {offices.map((o) => (
-            <div
-              key={o.name}
-              className={`rounded-lg px-4 py-4 text-center border ${
-                o.type === "Head Office"
-                  ? "gradient-gold text-solar-dark border-transparent shadow-md"
-                  : "gradient-solar text-primary-foreground border-transparent"
-              }`}
-            >
-              <p className="font-heading font-semibold text-sm">{o.name}</p>
-              <p
-                className={`text-xs mt-0.5 ${o.type === "Head Office" ? "text-solar-dark/70" : "text-primary-foreground/60"}`}
-              >
-                {o.type}
-              </p>
-            </div>
-          ))}
+        <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-border">
+          <img
+            src="./office_location.png"
+            alt="Alayna Green Energy office locations"
+            className="w-full h-auto object-cover"
+          />
         </div>
       </div>
     </section>
